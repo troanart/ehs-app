@@ -1,5 +1,9 @@
-import Head from "next/head";
+import React from "react";
 import "./globals.css";
+import Head from "next/head";
+
+
+
 
 export const metadata = {
   title: "Create Next App",
@@ -9,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
+      {/* <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
@@ -22,7 +26,7 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap"
           rel="stylesheet"
         />
-      </Head>
+      </Head> */}
       <body>{children}</body>
     </html>
   );

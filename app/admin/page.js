@@ -1,41 +1,52 @@
 "use client";
 
+
 import React from "react";
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import AvatarComponent from "../ui/components/admin-and-teacher-page/components/Header/components/avatar";
-import SearchComponent from "../ui/components/admin-and-teacher-page/components/Header/components/search-panal";
-import TopList from "../ui/components/admin-and-teacher-page/components/Header/components/top-list";
-const { Header, Content, Footer, Sider } = Layout;
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
+import {
+  SettingOutlined,
   BarChartOutlined,
-  CloudOutlined,
-  AppstoreOutlined,
+  BookOutlined,
   TeamOutlined,
-  ShopOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Divider } from 'antd';
+import AvatarComponent from "../ui/components/admin-and-teacher-page/components/Header/components/avatar";
+import CollapsibleTable from "../ui/components/admin-and-teacher-page/components/table/table-groups";
+import ColorToggleButton from "../ui/components/admin-and-teacher-page/components/toggle-button.js/filter-btn";
+import BasicList from "../ui/components/admin-and-teacher-page/components/Sider/top-list";
+import BreadcrumbComponent from "../ui/components/admin-and-teacher-page/components/Header/components/breadcramp";
+import AccountMenu from "../ui/components/admin-and-teacher-page/components/Header/components/notification-modal";
+const { Header, Content, Footer, Sider } = Layout;
+
+const itemsLabel = [
+  "Групи",
+  "Студенти",
+  "Викладачі",
+  "Управління",
+  "Статистика",
+];
+const items = [
+  TeamOutlined,
+  UserOutlined,
+  BookOutlined,
+  SettingOutlined,
+  BarChartOutlined,
 ].map((icon, index) => ({
+  
   key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `nav ${index + 1}`,
+  icon: React.createElement(icon, {className: 'scale-125'}),
+  label: `${itemsLabel[index]}`, 
 }));
+
 const Admin = () => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+ 
+  // const {
+  //   token: { colorBgContainer, borderRadiusLG },
+  // } = theme.useToken();
+
   return (
-    <Layout hasSider>
+    <Layout hasSider >
       <Sider
         style={{
           overflow: "auto",
@@ -52,8 +63,13 @@ const Admin = () => {
           defaultSelectedKeys={["4"]}
           items={items}
         />
+        <div className="w-[150px] mx-auto">
+          <Divider className="bg-gray-600 "/>
+        </div>
+        <div className="p-2">
+          <BasicList/>
+        </div>
       </Sider>
-
       <Layout
         style={{
           marginLeft: 200,
@@ -61,11 +77,18 @@ const Admin = () => {
         <Header
           style={{
             padding: 0,
-            background: colorBgContainer,
+            background: #f6ffed,
           }}>
-          <div className="ml-4">
+          <div className="mx-4 flex">
+            <div className="mr-auto">
+              <BreadcrumbComponent/>
+            </div>
             <AvatarComponent />
-            <SearchComponent />
+            <div>
+              <Divider type="vertical" className="bg-gray-300 h-[25px]"/>
+            </div>
+            <AccountMenu/>
+            
           </div>
         </Header>
         <Content
@@ -77,25 +100,20 @@ const Admin = () => {
             style={{
               padding: 24,
               textAlign: "center",
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
+              background: '#f6ffed',
+              borderRadius: '4px',
             }}>
-            <p>long content</p>
-            {Array.from(
-              {
-                length: 100,
-              },
-              (_, index) => (
-                <React.Fragment key={index}>
-                  {index % 20 === 0 && index ? "more" : "..."}
-                  <br />
-                </React.Fragment>
-              )
-            )}
+          
+            <div className="mb-5">
+              <ColorToggleButton/>
+            </div>
+            
+            <CollapsibleTable/>
           </div>
         </Content>
         <Footer
           style={{
+            maxHeight: '45px',
             textAlign: "center",
           }}></Footer>
       </Layout>

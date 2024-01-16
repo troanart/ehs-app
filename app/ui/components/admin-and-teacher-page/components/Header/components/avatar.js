@@ -14,14 +14,15 @@ const items = [
 ];
 const AvatarComponent = () => (
   <>
-    <Dropdown
+    <Dropdown 
+      
       menu={{
         items,
       }}
-      placement="bottom"
+      placement="bottomRight"
       arrow>
       <Space>
-        <Avatar>Admin</Avatar>
+        <Avatar className="cursor-pointer">Admin</Avatar>
       </Space>
     </Dropdown>
   </>
