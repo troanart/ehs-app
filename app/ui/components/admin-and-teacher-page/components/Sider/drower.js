@@ -1,31 +1,30 @@
-'use client'
+"use client";
 
-import React from 'react';
-import { Col, Divider, Drawer, Row } from 'antd';
-
+import React from "react";
+import { Col, Divider, Drawer, Row } from "antd";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const DescriptionItem = ({ title, content }) => (
-    <div className="site-description-item-profile-wrapper">
-      <p className="site-description-item-profile-p-label">{title}:</p>
-      {content}
-    </div>
-  );
+  <div className="site-description-item-profile-wrapper inline-block   ">
+    <p className="site-description-item-profile-p-label  inline-block  text-base">
+      {title}:
+    </p>
+    <div className="ml-4 inline-block text">{content}</div>
+  </div>
+);
 
-
-const DrowerComponent = ({placement,closable,onClose,open}) => {
+const DrowerComponent = ({ onClose, open }) => {
   return (
     <>
-     
-      <Drawer width={640} placement="right" closable={false} onClose={onClose} open={open}>
-        <p
-          className="site-description-item-profile-p"
-          style={{
-            marginBottom: 24,
-          }}
-        >
-          User Profile
-        </p>
+      <Drawer
+        width={640}
+        placement="right"
+        closable={false}
+        onClose={onClose}
+        open={open}>
+        <AccountCircleIcon sx={{ height: "95px", width: "95px" }} />
         <p className="site-description-item-profile-p">Personal</p>
+
         <Row>
           <Col span={12}>
             <DescriptionItem title="Full Name" content="Lily" />

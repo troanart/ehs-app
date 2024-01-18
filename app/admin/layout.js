@@ -1,6 +1,9 @@
 import React from "react";
-import "./globals.css";
 import Head from "next/head";
+import { Layout } from "antd";
+import HeaderComponents from "../ui/components/admin-and-teacher-page/components/Header/components/Header";
+import SiderComponents from "../ui/components/admin-and-teacher-page/components/Sider/Sider";
+import Main from "../ui/components/admin-and-teacher-page/components/Main/Main";
 
 export const metadata = {
   title: "Create Next App",
@@ -24,7 +27,18 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </Head>
-      <body>{children}</body>
+      <body>
+        <Layout hasSider>
+          <SiderComponents />
+          <Layout
+            style={{
+              marginLeft: 200,
+            }}>
+            <HeaderComponents />
+            <Main>{children}</Main>
+          </Layout>
+        </Layout>
+      </body>
     </html>
   );
 }

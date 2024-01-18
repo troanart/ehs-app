@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
@@ -17,7 +17,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 function Row({ row }) {
-  
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -27,28 +26,22 @@ function Row({ row }) {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
-          >
+            onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row"  >
+        <TableCell component="th" scope="row">
           {row.name}
         </TableCell>
         <TableCell align="center">{row.type}</TableCell>
         <TableCell align="center">{row.studentsCount}</TableCell>
         <TableCell align="center">{row.teacher}</TableCell>
         <TableCell align="center">
-          <div className="text-sky-600">
-            {row.income}
-          </div>
-          
-          </TableCell>
+          <div className="text-sky-600">{row.income}</div>
+        </TableCell>
         <TableCell align="center">
-          <div className="text-green-600">
-            {row.cleareIncome}
-          </div>
-          </TableCell>
+          <div className="text-green-600">{row.cleareIncome}</div>
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={10}>
@@ -89,7 +82,6 @@ function Row({ row }) {
                       <TableCell component="th" scope="row">
                         {student.checkLessons}
                       </TableCell>
-                    
                     </TableRow>
                   ))}
                 </TableBody>
@@ -107,9 +99,9 @@ Row.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    studentsCount:PropTypes.number.isRequired,
+    studentsCount: PropTypes.number.isRequired,
     teacher: PropTypes.string.isRequired,
-    income:  PropTypes.number.isRequired,
+    income: PropTypes.number.isRequired,
     cleareIncome: PropTypes.number.isRequired,
     students: PropTypes.arrayOf(
       PropTypes.shape({
@@ -119,16 +111,13 @@ Row.propTypes = {
         age: PropTypes.number.isRequired,
         tariff: PropTypes.number.isRequired,
         allLessons: PropTypes.number.isRequired,
-        checkLessons: PropTypes.number.isRequired
+        checkLessons: PropTypes.number.isRequired,
       })
     ).isRequired,
   }).isRequired,
 };
 
 export default function CollapsibleTable() {
-  if (typeof window === 'undefined') {
-    return null; // Ничего не рендерим на сервере
-  }
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
@@ -136,7 +125,7 @@ export default function CollapsibleTable() {
       try {
         const response = await fetch("http://localhost:3000/api/data");
         const data = await response.json();
-        setGroups(data[2]); 
+        setGroups(data[2]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -151,13 +140,24 @@ export default function CollapsibleTable() {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell className="font-semibold text-base">Назва групи</TableCell>
-            <TableCell className="font-semibold text-base" align="center">Тип групи</TableCell>
-            <TableCell className="font-semibold text-base" align="center">Кількість студентів</TableCell>
-            <TableCell className="font-semibold text-base" align="center">Викладач</TableCell>
-            <TableCell className="font-semibold text-base" align="center">Дохід</TableCell>
-            <TableCell className="font-semibold text-base" align="center">Прибуток</TableCell>
-           
+            <TableCell className="font-semibold text-base">
+              Назва групи
+            </TableCell>
+            <TableCell className="font-semibold text-base" align="center">
+              Тип групи
+            </TableCell>
+            <TableCell className="font-semibold text-base" align="center">
+              Кількість студентів
+            </TableCell>
+            <TableCell className="font-semibold text-base" align="center">
+              Викладач
+            </TableCell>
+            <TableCell className="font-semibold text-base" align="center">
+              Дохід
+            </TableCell>
+            <TableCell className="font-semibold text-base" align="center">
+              Прибуток
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
