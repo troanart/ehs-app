@@ -1,3 +1,5 @@
+import '../../login/login.module.css'
+
 export default function IconWavesMove() {
   return (
     <svg

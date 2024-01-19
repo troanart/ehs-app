@@ -1,10 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { Layout } from "antd";
-import HeaderComponents from "../ui/common/Header/components/Header";
-import SiderComponents from "../ui/common/Sider/Sider";
-import Main from "../ui/common/Main/Main";
-import FooterComponent from "../ui/common/Footer/Footer";
+import './login.module.css'
 
 export const metadata = {
   title: "Create Next App",
@@ -28,21 +24,12 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </Head>
-      <body>
-        <Layout hasSider>
-          <SiderComponents />
-          <Layout
-            style={{
-              marginLeft: 200,
-            }}>
-            <HeaderComponents />
-            <Main>
-              {children}
-            </Main>
-            <FooterComponent/>
-          </Layout>
-        </Layout>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
+
+
+
+
+

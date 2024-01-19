@@ -37,13 +37,26 @@
 //   icon: React.createElement(icon, { className: "scale-125" }),
 //   label: `${itemsLabel[index]}`,
 // }));
+const fetchData = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/api/data");
+    const data = await response.json();
+    console.log(data)
+  } catch( error) {
+    console.error("Error fetching data:", error)
+    return []
+  }
+};
+fetchData()
 
 const Admin = () => {
+ 
   // const {
   //   token: { colorBgContainer, borderRadiusLG },
   // } = theme.useToken();
 
   return (
+
     <h1>Єто админка</h1>
     // <Layout hasSider>
     //   <Sider

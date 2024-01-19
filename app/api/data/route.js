@@ -1,4 +1,7 @@
+
+
 export async function GET(req) {
+
   const students = [
     {
       id: 1,
@@ -222,8 +225,6 @@ export async function GET(req) {
       group: "Группа офлайн 2",
     },
   ];
-
-  console.log(students);
 
   const data = [students, teachers, groups];
 

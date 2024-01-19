@@ -1,4 +1,5 @@
-import React from "react";
+'use client'
+
 import { Layout } from "antd";
 const { Footer } = Layout;
 

@@ -9,7 +9,7 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 
 export default function Social() {
   return (
-    <Stack direction="row" width={"200px"}>
+    <Stack className="flex flex-row w-[100px] gap-5 justify-center items-center flex-wrap">
       <IconButton aria-label="GitGub">
         <GitHubIcon sx={{ fill: "white", scale: "1.4" }} />
       </IconButton>
