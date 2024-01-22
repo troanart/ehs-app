@@ -42,6 +42,7 @@ export default function SiderComponents() {
   return (
     <Sider
       style={{
+        background: '#001529',
         overflow: "auto",
         height: "100vh",
         position: "fixed",

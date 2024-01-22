@@ -1,6 +1,7 @@
 import React from "react";
 import "./globals.css";
 import Head from "next/head";
+import { Layout } from 'antd';
 
 export const metadata = {
   title: "Create Next App",
