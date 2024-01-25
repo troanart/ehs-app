@@ -1,133 +1,87 @@
-"use client";
+'use client'
 
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import {React, useState, useEffect} from 'react';
+import { Space, Table, Tag } from 'antd';
+import api from '@/app/utils/api';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-function Row({ row }) {
-  const [open, setOpen] = React.useState(false);
+const columns = [
+  {
+    title: 'Назва',
+    dataIndex: 'name',
+    key: 'name',
+    
+  },
+  {
+    title: 'Викладач',
+    dataIndex: 'teacher',
+    key: 'teacher',
+  },
+  {
+    title: 'К-ть студентів',
+    dataIndex: 'studentsCount',
+    key: 'studentsCount',
+  },
+  
+  {
+    title: 'Тип',
+    key: 'tags',
+    dataIndex: 'tags',
+    // render: (_, { tags }) => (
+    //   <>
+    //     {tags.map((tag) => {
+    //       let color = tag.length > 5 ? 'geekblue' : 'green';
+    //       if (tag === 'loser') {
+    //         color = 'volcano';
+    //       }
+    //       return (
+    //         <Tag color={color} key={tag}>
+    //           {tag.toUpperCase()}
+    //         </Tag>
+    //       );
+    //     })}
+    //   </>
+    // ),
+  },
+  {
+    title: 'Прибуток',
+    dataIndex: 'income',
+    key: 'income',
+  },
+  {
+    title: 'Чистий прибуток',
+    dataIndex: 'cleareIncome',
+    key: 'cleareIncome',
+  },
+  {
+    title: 'Дії',
+    key: 'action',
+    render: () => (
+      <Stack direction="row" spacing={1}>
+        <IconButton aria-label="edit">
+          <ModeEditIcon/>
+        </IconButton>
+        <IconButton aria-label="delete">
+          <DeleteIcon/>
+        </IconButton>
+      </Stack>
+    ),
+  },
+];
 
-  return (
-    <React.Fragment>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}>
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-        <TableCell component="th" scope="row">
-          {row.name}
-        </TableCell>
-        <TableCell align="center">{row.type}</TableCell>
-        <TableCell align="center">{row.studentsCount}</TableCell>
-        <TableCell align="center">{row.teacher}</TableCell>
-        <TableCell align="center">
-          <div className="text-sky-600">{row.income}</div>
-        </TableCell>
-        <TableCell align="center">
-          <div className="text-green-600">{row.cleareIncome}</div>
-        </TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={10}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Дані групи
-              </Typography>
-              <Table size="small" aria-label="purchases">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Студенти</TableCell>
-                    <TableCell>Контакти</TableCell>
-                    <TableCell>Вік</TableCell>
-                    <TableCell>Тариф</TableCell>
-                    <TableCell>Кіл-ть занять</TableCell>
-                    <TableCell>Відвіданих занять</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row.students.map((student) => (
-                    <TableRow key={student.id}>
-                      <TableCell component="th" scope="row">
-                        {student.name}
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                        {student.contacts}
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                        {student.age}
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                        {student.tariff}
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                        {student.allLessons}
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                        {student.checkLessons}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
-    </React.Fragment>
-  );
-}
-
-Row.propTypes = {
-  row: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    studentsCount: PropTypes.number.isRequired,
-    teacher: PropTypes.string.isRequired,
-    income: PropTypes.number.isRequired,
-    cleareIncome: PropTypes.number.isRequired,
-    students: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        contacts: PropTypes.string.isRequired,
-        age: PropTypes.number.isRequired,
-        tariff: PropTypes.number.isRequired,
-        allLessons: PropTypes.number.isRequired,
-        checkLessons: PropTypes.number.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
-};
-
-export default function CollapsibleTable() {
+const App = () => {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/data");
-        const data = await response.json();
-        setGroups(data[2]);
+        const groupsData = await api.getGroups();
+        setGroups(groupsData);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     };
 
@@ -135,37 +89,9 @@ export default function CollapsibleTable() {
   }, []);
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell className="font-semibold text-base">
-              Назва групи
-            </TableCell>
-            <TableCell className="font-semibold text-base" align="center">
-              Тип групи
-            </TableCell>
-            <TableCell className="font-semibold text-base" align="center">
-              Кількість студентів
-            </TableCell>
-            <TableCell className="font-semibold text-base" align="center">
-              Викладач
-            </TableCell>
-            <TableCell className="font-semibold text-base" align="center">
-              Дохід
-            </TableCell>
-            <TableCell className="font-semibold text-base" align="center">
-              Прибуток
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {groups.map((group) => (
-            <Row key={group.id} row={group} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Table columns={columns} dataSource={groups} pagination={false} />
   );
-}
+};
+
+
+export default App;

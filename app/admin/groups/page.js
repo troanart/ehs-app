@@ -1,15 +1,16 @@
 import React from "react";
 import CollapsibleTable from "@/app/ui/common/Main/table-groups";
 import ColorToggleButton from "@/app/ui/common/Main/filter-btn";
-import BasicCard from "@/app/ui/common/common/information-card";
+// import BasicCard from "@/app/ui/common/common/information-card";
 
 export default function Groups() {
   return (
     <div>
-      <BasicCard />
+      {/* <BasicCard />
+      */}
       <ColorToggleButton/>
-      <CollapsibleTable/>
-
+      <CollapsibleTable/> 
+      {/* <h3>Це сторінка групп</h3> */}
     </div>
   );
 }

@@ -40,18 +40,18 @@ const CardList = () => {
     {
       title: "Кількість студентів:",
       value: students.length || 0,
-      icon: (
+      icon: 
         <PersonIcon className="w-[35px] h-[35px]  absolute top-0 right-1  " />
-      ),
+      ,
     },
     {
       title: "Загальний прибуток:",
       value: new Intl.NumberFormat("uk", { notation: "compact" }).format(
         groups.reduce((sum, group) => sum + (group.income || 0), 0) || 0
       ),
-      icon: (
+      icon: 
         <PaidIcon className="w-[35px] h-[35px]  absolute top-0 right-1  " />
-      ),
+      ,
       description: "Загальний прибуток з урахуванням заробітної плати вчителів",
     },
     {
@@ -98,7 +98,7 @@ const CardList = () => {
               <Tooltip arrow title="Змінити цілі">
                 <IconButton
                   aria-label="delete"
-                  className="p-0 absolute left-[110px] bottom-[43px]">
+                  className="p-0 absolute left-[115px] bottom-[43px]">
                   <SettingsIcon className="w-4 " />
                 </IconButton>
               </Tooltip>

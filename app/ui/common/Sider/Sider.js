@@ -3,6 +3,7 @@
 import React from "react";
 import { Layout, Menu } from "antd";
 import { Divider } from "antd";
+import { useRouter } from "next/navigation";
 import BasicList from "./top-list";
 import {
   BarChartOutlined,
@@ -17,28 +18,20 @@ import Logout from "./logout-btn";
 
 const { Sider } = Layout;
 
-const itemsLabel = [
-  "Головна",
-  "Групи",
-  "Студенти",
-  "Викладачі",
-  "Календар",
-  "Статистика",
+
+
+const menuItems = [
+  { title: "Головна", icon: <HomeOutlined />, path: "/" },
+  { title: "Групи", icon: <TeamOutlined />, path: "/admin/groups" },
+  { title: "Студенти", icon: <UserOutlined />, path: "/admin/students" },
+  { title: "Викладачі", icon: <BookOutlined />, path: "/admin/teachers" },
+  { title: "Календар", icon: <CalendarOutlined />, path: "/admin/calendar" },
+  { title: "Статистика", icon: <BarChartOutlined />, path: "/admin/stats" },
 ];
-const items = [
-  HomeOutlined,
-  TeamOutlined,
-  UserOutlined,
-  BookOutlined,
-  CalendarOutlined,
-  BarChartOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon, { className: "scale-125" }),
-  label: `${itemsLabel[index]}`,
-}));
+
 
 export default function SiderComponents() {
+  const router = useRouter();
   return (
     <Sider
       style={{
@@ -56,13 +49,18 @@ export default function SiderComponents() {
       <div className="w-[150px] mx-auto">
         <Divider className="bg-gray-600 " />
       </div>
-      
-      <Menu
-        theme="dark"
-        mode="inline"
-        defaultSelectedKeys={["4"]}
-        items={items}
-      />
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} >
+        {menuItems.map((item) => (
+          <Menu.Item key={item.path} icon={item.icon}>
+            <a
+              onClick={() => router.push(item.path)}
+              style={{ cursor: "pointer" }}
+            >
+              {item.title}
+            </a>
+          </Menu.Item>
+        ))}
+      </Menu>
       <div className="w-[150px] mx-auto">
         <Divider className="bg-gray-600 " />
       </div>

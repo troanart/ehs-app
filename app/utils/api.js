@@ -38,6 +38,16 @@ const api = {
       throw error;
     }
   },
+  getAllData: async () => {
+    try {
+      const response = await axios.get(`${apiEndpoint}/allData`);
+      return response.data;
+    } catch (error) {
+      console.error('Error get all data:', error);
+      throw error;
+    }
+  },
+  
 }
 
 export default api
