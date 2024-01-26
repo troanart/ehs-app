@@ -10,7 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-import DrowerComponent from './drower';
+import DrowerComponent from '../groups/drower';
 
 
 

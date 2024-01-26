@@ -38,6 +38,15 @@ const api = {
       throw error;
     }
   },
+  addGroups: async (group) => {
+    try {
+      const response = await axios.post(`${apiEndpoint}/groups`, group);
+      return response.data;
+    } catch (error) {
+      console.error('Error adding group:', error);
+      throw error;
+    }
+  },
   getAllData: async () => {
     try {
       const response = await axios.get(`${apiEndpoint}/allData`);

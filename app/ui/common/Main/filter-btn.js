@@ -17,6 +17,7 @@ export default function ColorToggleButton() {
       exclusive
       onChange={handleChange}
       aria-label="Platform"
+      
     >
       <ToggleButton value="all">Усі</ToggleButton>
       <ToggleButton value="online">Онлайн</ToggleButton>
