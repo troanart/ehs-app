@@ -4,8 +4,10 @@
 @import url("/waves.svg");
 
 :root {
+  --onlineBorderColor: #1976d2;
+  --offlineBorderColor: #fdd835;
+  --corporateBorderColor: #00bcd4;
 }
-
 * {
   box-sizing: border-box;
 }

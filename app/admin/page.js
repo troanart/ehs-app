@@ -9,7 +9,6 @@ const Admin = () => {
         <Button sx={{ marginBottom: "4px" }}>Детальніше</Button>
         <CardList />
       </div>
-      <CalendarComponent />
     </div>
   );
 };

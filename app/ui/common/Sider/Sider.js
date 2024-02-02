@@ -21,7 +21,7 @@ const { Sider } = Layout;
 
 
 const menuItems = [
-  { title: "Головна", icon: <HomeOutlined />, path: "/" },
+  { title: "Головна", icon: <HomeOutlined />, path: "/admin" },
   { title: "Групи", icon: <TeamOutlined />, path: "/admin/groups" },
   { title: "Студенти", icon: <UserOutlined />, path: "/admin/students" },
   { title: "Викладачі", icon: <BookOutlined />, path: "/admin/teachers" },

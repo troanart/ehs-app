@@ -7,6 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        online: '#1976d2',
+        offline: '#fdd835',
+        corporate: '#00bcd4',
+      },
+     
       animation: {
         moveForever: "moveForever 15s ease-in-out infinite",
         "spin-slow": "spin 5s linear infinite",
@@ -21,5 +27,6 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+   plugins: [
+  ],
 };
