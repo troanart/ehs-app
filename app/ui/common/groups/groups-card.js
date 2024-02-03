@@ -7,7 +7,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import api from '@/app/utils/api';
 
 
-const GroupsCards = ({ selectedColors }) => {
+const GroupsCards = ({ selectedColors,filterType }) => {
     const [groups, setGroups] = useState([]);
     const [students, setStudents] = useState([]);
     
@@ -19,12 +19,19 @@ const GroupsCards = ({ selectedColors }) => {
           setStudents(studentsData);
           setGroups(groupsData);
         } catch (error) {
-          console.error('Error fetching data:', error);
+         
         }
       };
   
       fetchData();
     }, []);
+
+    const filteredGroups = groups.filter((item) => {
+      if (filterType === "all") {
+        return true;
+      }
+      return item.type === filterType;
+    });
 
     const getBorderColor = (groupType) => {
       switch (groupType) {
@@ -46,12 +53,12 @@ const GroupsCards = ({ selectedColors }) => {
           gutter: 16,
           column: 4,
         }}
-        dataSource={groups}
+        dataSource={filteredGroups}
         renderItem={(item) => {
           const studentsGroup = students.filter((student) => student.groupId === item.id);
   
           return (
-            <List.Item  >
+            <List.Item key={item.id} >
               <Card className={`border-l-[15px] text-left relative min-h-[250px] `} style={{ borderLeftColor: getBorderColor(item.type)}}  title={<div className='text-2xl'>{item.name}</div>}>
                 <IconButton className='absolute top-2 right-3'>
                   <MoreHorizIcon color='primary' />
@@ -63,7 +70,7 @@ const GroupsCards = ({ selectedColors }) => {
                  
                     <div className='flex flex-wrap gap-1 '>
                         {studentsGroup.map((student) => (
-                            <Tag className='bg-sky-300 border-none px-3'>{student.name}</Tag>
+                            <Tag key={student.id} className='bg-sky-300 border-none px-3'>{student.name}</Tag>
                         ))}
                     </div>
                 </div>

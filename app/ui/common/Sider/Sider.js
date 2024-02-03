@@ -49,17 +49,17 @@ export default function SiderComponents() {
       <div className="w-[150px] mx-auto">
         <Divider className="bg-gray-600 " />
       </div>
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} >
-        {menuItems.map((item) => (
-          <Menu.Item key={item.path} icon={item.icon}>
-            <a
-              onClick={() => router.push(item.path)}
-              style={{ cursor: "pointer" }}
-            >
-              {item.title}
-            </a>
-          </Menu.Item>
-        ))}
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} >
+          {menuItems.map((item) => (
+            <Menu.Item key={item.path} icon={item.icon}>
+              <a
+                onClick={() => router.push(item.path)}
+                style={{ cursor: "pointer" }}
+              >
+                {item.title}
+              </a>
+            </Menu.Item>
+          ))}
       </Menu>
       <div className="w-[150px] mx-auto">
         <Divider className="bg-gray-600 " />
