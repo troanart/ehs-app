@@ -1,5 +1,5 @@
-import axios from 'axios';
-const apiEndpoint = '/api';
+import axios from "axios";
+const apiEndpoint = "/api";
 
 const api = {
   getStudents: async () => {
@@ -7,7 +7,7 @@ const api = {
       const response = await axios.get(`${apiEndpoint}/students`);
       return response.data;
     } catch (error) {
-      console.error('Error fetching students:', error);
+      console.error("Error fetching students:", error);
       throw error;
     }
   },
@@ -16,25 +16,25 @@ const api = {
       const response = await axios.get(`${apiEndpoint}/groups`);
       return response.data;
     } catch (error) {
-      console.error('Error fetching groups:', error);
+      console.error("Error fetching groups:", error);
       throw error;
     }
   },
   getTeachers: async () => {
-      try {
-        const response = await axios.get(`${apiEndpoint}/teachers`);
-        return response.data;
-      } catch (error) {
-        console.error('Error fetching teachers:', error);
-        throw error;
-      }
+    try {
+      const response = await axios.get(`${apiEndpoint}/teachers`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching teachers:", error);
+      throw error;
+    }
   },
   addStudent: async (student) => {
     try {
       const response = await axios.post(`${apiEndpoint}/students`, student);
       return response.data;
     } catch (error) {
-      console.error('Error adding student:', error);
+      console.error("Error adding student:", error);
       throw error;
     }
   },
@@ -43,7 +43,7 @@ const api = {
       const response = await axios.post(`${apiEndpoint}/groups`, group);
       return response.data;
     } catch (error) {
-      console.error('Error adding group:', error);
+      console.error("Error adding group:", error);
       throw error;
     }
   },
@@ -52,14 +52,10 @@ const api = {
       const response = await axios.get(`${apiEndpoint}/allData`);
       return response.data;
     } catch (error) {
-      console.error('Error get all data:', error);
+      console.error("Error get all data:", error);
       throw error;
     }
   },
-  
-}
+};
 
-export default api
-
-
-
+export default api;
