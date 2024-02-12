@@ -1,21 +1,22 @@
 'use client'
+
 import React from 'react';
-import AddGroupsForm from "@/app/ui/common/groups/add-groups-form";
 import Button from '@mui/material/Button';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import AddStudentsForm from './add-student-form';
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
-export default function AddGroups() {
+export default function AddStudents() {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -27,8 +28,8 @@ export default function AddGroups() {
     };
     return ( 
     <>
-        <Button variant="outlined" color='primary' startIcon={<GroupAddIcon />} onClick={handleClickOpen} >
-            Створити групу
+        <Button variant="outlined" color='primary' startIcon={<PersonAddAlt1Icon />} onClick={handleClickOpen} >
+            Додати нового студнта
         </Button>
          <Dialog
          open={open}
@@ -37,16 +38,14 @@ export default function AddGroups() {
          onClose={handleClose}
          aria-describedby="alert-dialog-slide-description"
        >
-         <DialogTitle>{"Створити нову групу"}</DialogTitle>
+         <DialogTitle>{"Додати нового студента"}</DialogTitle>
          <DialogContent>
-            <AddGroupsForm/>
+            <AddStudentsForm/>
          </DialogContent>
          <DialogActions>
-          
+
          </DialogActions>
        </Dialog>
     </>
     )
 }
-
-

@@ -1,36 +1,11 @@
-"use client";
-
+'use server'
 import React from "react";
-import { Layout, Menu } from "antd";
 import { Divider } from "antd";
-import { useRouter } from "next/navigation";
-import BasicList from "./top-list";
-import {
-  BarChartOutlined,
-  BookOutlined,
-  TeamOutlined,
-  UserOutlined,
-  HomeOutlined,
-  CalendarOutlined,
-} from "@ant-design/icons";
-import Social from "./social";
-import Logout from "./logout-btn";
-
-const { Sider } = Layout;
-
-const menuItems = [
-  { title: "Головна", icon: <HomeOutlined />, path: "/admin" },
-  { title: "Групи", icon: <TeamOutlined />, path: "/admin/groups" },
-  { title: "Студенти", icon: <UserOutlined />, path: "/admin/students" },
-  { title: "Викладачі", icon: <BookOutlined />, path: "/admin/teachers" },
-  { title: "Календар", icon: <CalendarOutlined />, path: "/admin/calendar" },
-  { title: "Статистика", icon: <BarChartOutlined />, path: "/admin/stats" },
-];
+import MenuComponent from "./menu";
 
 export default function SiderComponents() {
-  const router = useRouter();
   return (
-    <Sider
+    <aside
       style={{
         background: "#001529",
         overflow: "auto",
@@ -48,20 +23,10 @@ export default function SiderComponents() {
       <div className="w-[150px] mx-auto">
         <Divider className="bg-gray-600 " />
       </div>
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
-        {menuItems.map((item) => (
-          <Menu.Item key={item.path} icon={item.icon} items={[]}>
-            <a
-              onClick={() => router.push(item.path)}
-              style={{ cursor: "pointer" }}>
-              {item.title}
-            </a>
-          </Menu.Item>
-        ))}
-      </Menu>
+        <MenuComponent/>
       <div className="w-[150px] mx-auto">
         <Divider className="bg-gray-600 " />
       </div>
-    </Sider>
+    </aside>
   );
 }
